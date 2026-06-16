@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../../data/youtube-trend.db"
+}
+
+model VideoSnapshot {
+  id           String   @id @default(cuid())
+  videoId      String
+  title        String
+  channelId    String
+  channelTitle String
+  regionCode   String
+  categoryId   String
+  rank         Int
+  viewCount    String
+  likeCount    String
+  commentCount String
+  trendScore   Float
+  publishedAt  String
+  thumbnailUrl String
+  duration     String
+  capturedAt   DateTime @default(now())
+
+  @@index([videoId, regionCode])
+  @@index([regionCode, categoryId, capturedAt])
+}
+
+model Channel {
+  channelId       String   @id
+  title           String
+  description     String
+  subscriberCount String
+  videoCount      String
+  viewCount       String
+  country         String
+  publishedAt     String
+  thumbnailUrl    String
+  updatedAt       DateTime @updatedAt
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  type      String
+  targetId  String
+  label     String
+  metadata  String   @default("{}")
+  createdAt DateTime @default(now())
+
+  @@unique([type, targetId])
+}
+
+model QuotaLog {
+  id        String   @id @default(cuid())
+  endpoint  String
+  units     Int
+  date      String
+  createdAt DateTime @default(now())
+
+  @@index([date])
+}
+
+model AiCache {
+  id        String   @id @default(cuid())
+  cacheKey  String   @unique
+  type      String
+  result    String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+// 앱 설정 (API 키 등)
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
