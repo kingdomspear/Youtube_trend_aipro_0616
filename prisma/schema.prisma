@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:../../data/youtube-trend.db"
+  url      = env("DATABASE_URL")
 }
 
 model VideoSnapshot {
