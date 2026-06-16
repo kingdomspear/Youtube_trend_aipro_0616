@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# SQLite (로컬 데이터 / 빌드 아티팩트)
+*.db
+!prisma/runtime.db
+
 # debug
 npm-debug.log*
 yarn-debug.log*

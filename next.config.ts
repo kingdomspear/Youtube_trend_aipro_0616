@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "ui-avatars.com" },
     ],
   },
+  // Vercel 번들에 빌드 시 생성한 스키마 DB 포함
+  outputFileTracingIncludes: {
+    "/api/**": ["./prisma/runtime.db"],
+  },
 };
 
 export default nextConfig;
