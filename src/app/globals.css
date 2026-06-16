@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
 
 /* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
@@ -180,6 +180,16 @@ body {
   outline:2px solid var(--color-focus-outer);
   outline-offset:2px;
 }
+
+/* ─── Nav link (Server Component hover via CSS) ─────────────── */
+.nav-link {
+  display:flex; align-items:center; gap:6px;
+  padding:8px 12px; border-radius:var(--rounded-md);
+  font-size:14px; font-weight:600; line-height:1;
+  color:var(--color-mute); text-decoration:none; white-space:nowrap;
+  transition:color 120ms, background 120ms;
+}
+.nav-link:hover { color:var(--color-ink); background:var(--color-surface-card); }
 
 /* ─── Utilities ──────────────────────────────────────────────── */
 .line-clamp-2 {
